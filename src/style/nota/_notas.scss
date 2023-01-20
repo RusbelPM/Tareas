@@ -1,0 +1,287 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
+//colours
+$background: #262729;
+$shadow: #18191a;
+$title: #777;
+
+//fonts
+$sans: "Roboto Mono", sans-serif;
+
+//center
+@mixin center {
+  margin: 0 auto;
+}
+
+//flex center center
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//full width/height
+@mixin full {
+  width: 100%;
+  height: 100%;
+}
+
+//rounded edges
+@mixin round-edge($px) {
+  border-radius: $px;
+}
+
+//box-shadow
+@mixin box-shadow {
+  box-shadow: 0 5px 20px -3px $shadow;
+}
+
+// ===========
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $shadow;
+}
+
+::-webkit-scrollbar-thumb {
+  background: lighten($background, 10%);
+  border-radius: 5px;
+  border: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $background;
+  margin: 0;
+  text-align: center;
+  font-family: $sans;
+  height: 100vh;
+}
+
+.main-container {
+  background: lighten($background, 4%);
+  margin: 50px auto 0;
+  width: 70%;
+  max-width: 1000px;
+  min-width: 700px;
+  @include box-shadow;
+  padding: 30px;
+  @include round-edge(10px 10px 0 0);
+  min-height: 100vh;
+  position: relative;
+}
+
+.top {
+  width: 95%;
+  @include center;
+  position: relative;
+}
+
+h1 {
+  color: $title;
+  font-size: 1.8rem;
+}
+
+#notes-container {
+  width: 95%;
+  margin: 30px auto 50px;
+  @include round-edge(5px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: in-between;
+  align-items: flex-start;
+  background: lighten($background, 10%);
+}
+
+.add-notes-container {
+  width: 70%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: lighten($background, 2%);
+  z-index: 10;
+  @include round-edge(0 10px 10px 0);
+  padding: 60px 50px;
+
+}
+
+%buttons {
+  background: $title;
+  color: darken($background, 10%);
+  border: none;
+  border-radius: 2px;
+
+}
+
+
+//js-related
+
+%newnote {
+  background: lighten($background, 4%);
+  border: none;
+  font-family: $sans;
+  color: lighten($title, 40);
+  display: block;
+  width: 100%;
+  margin: 0 auto 15px;
+}
+
+.newNote {
+  @extend %newnote;
+  min-height: 300px;
+  resize: none;
+  padding: 15px;
+  font-size: 0.9rem;
+  &Container {
+    @include center;
+    min-width: 200px;
+    width: 90%;
+    & h2:first-of-type {
+      color: $title;
+    }
+  }
+  &Title {
+    @extend %newnote;
+    height: 35px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    font-size: 1rem;
+  }
+  &Title::placeholder,
+  &::placeholder {
+    font-style: italic;
+    color: $title;
+  }
+}
+
+input,
+textarea {
+  &:focus {
+    outline: none;
+    background: lighten($background, 0.5%);
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save {
+  margin-right: 10px;
+}
+
+.save,
+.cancel {
+  @extend %buttons;
+  font-size: 0.8rem;
+  padding: 5px 8px;
+  font-family: $sans;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.notes {
+  transition: 0.5s;
+  background: lighten($background, 8%);
+  @include round-edge(5px);
+  margin: 5px;
+  padding: 25px;
+  color: lighten($title, 20%);
+  width: calc((100% / 3) - 10px);
+  text-align: left;
+  min-height: 300px;
+  position: relative;
+  border: 2px solid lighten($background, 2%);
+  & h2 {
+    margin: 0 0 20px;
+    font-size: 1.1rem;
+  }
+  & p {
+    margin: 0;
+    white-space: pre-wrap; //preserve white space/line breaks
+    font-size: 0.9rem;
+    font-family: "Noto Sans", sans-serif;
+    line-height: 1.5;
+  }
+  &:hover {
+    border-color: lighten($background, 20%);
+  }
+//    & [type="checkbox"] {
+//      position: absolute;
+//      top: 30px;
+//      right: 30px;
+//      width: 15px;
+//      height: 15px;
+//    }
+
+    overflow: hidden
+
+}
+
+
+
+
+
+
+
+
+
+.save1{
+    @extend %buttons;
+    font-size: 0.8rem;
+    padding: 5px 8px;
+    font-family: $sans;
+    &:hover {
+      cursor: pointer;
+    }
+    background: rgb(179, 56, 56);
+    margin: 0 22px 0 0;
+    border-radius: 5px;
+}
+.edit{
+    text-decoration: none;
+    @extend %buttons;
+    font-size: 0.8rem;
+    padding: 5px 8px;
+    font-family: $sans;
+    &:hover {
+      cursor: pointer;
+    }
+    background: #61dafb;
+    border-radius: 5px;
+
+}
+
+.crear{
+    text-decoration: none;
+    @extend %buttons;
+    font-size: 0.8rem;
+    padding: 5px 8px;
+    font-family: $sans;
+    &:hover {
+      cursor: pointer;
+    }
+    background: rgb(46, 130, 84);
+    border-radius: 5px;
+
+}
+
+
+
+.bots{
+    margin-top: 71%;
+    width: 100%;
+    border-radius: 5px;
+
+}
